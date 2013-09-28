@@ -122,7 +122,7 @@
     
     if (!location || [self.mapView.annotations count] < 2) {
         if (self.triggerCalloutTimer != nil)
-            self.triggerCalloutTimer.invalidate;
+            [self.triggerCalloutTimer invalidate];
        self.triggerCalloutTimer = [NSTimer scheduledTimerWithTimeInterval: 1.4
                                         target: self
                                        selector: @selector(findNearestStop)
@@ -148,7 +148,7 @@
     // Show callout of nearest stop.  We delay this to give the map time to
     // draw the pins for the stops
     if (self.triggerCalloutTimer != nil)
-        self.triggerCalloutTimer.invalidate;
+        [self.triggerCalloutTimer invalidate];
     [self.tripsViewController showFindingIndicators];
     self.triggerCalloutTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
                                      target: self
@@ -233,7 +233,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    self.triggerCalloutTimer.invalidate;
+    [self.triggerCalloutTimer invalidate];
     NSString *stopName = ((StopAnnotation *)view.annotation).subtitle;
     
     [self.tripsViewController.stopsViewController selectStopNamed:stopName];
