@@ -126,7 +126,7 @@
 
     self.selectedStopAnnotation = nil;
     self.selectedStopName = nil;
-    float minDistance = -1;
+    CLLocationDistance minDistance = -1;
     for (id annotation in self.stopAnnotations) {
         CLLocation *stopLocation = [[CLLocation alloc] initWithCoordinate:((StopAnnotation *)annotation).coordinate altitude:0 horizontalAccuracy:kCLLocationAccuracyNearestTenMeters verticalAccuracy:kCLLocationAccuracyHundredMeters timestamp:[NSDate date]];
         CLLocationDistance distance = [stopLocation distanceFromLocation:location];

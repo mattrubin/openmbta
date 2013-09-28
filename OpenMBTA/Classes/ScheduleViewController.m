@@ -206,9 +206,9 @@ const int kCellWidth = 44;
     if ( (y > maxY ) &&  (maxY >= self.scrollView.frame.size.height) )   {
         newY = self.scrollView.contentSize.height - self.scrollView.frame.size.height + 10;
     } else {
-        newY = round(y/kRowHeight) * kRowHeight;
+        newY = roundf(y/kRowHeight) * kRowHeight;
     }
-    CGPoint contentOffset = CGPointMake( (round(x/kCellWidth) * kCellWidth), newY);
+    CGPoint contentOffset = CGPointMake( (roundf(x/kCellWidth) * kCellWidth), newY);
 
     [self.scrollView setContentOffset:contentOffset animated:animated];        
 }

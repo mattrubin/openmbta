@@ -54,7 +54,7 @@
     float y = location.y; 
     float x = location.x;
     int row = (int)(y / self.tileHeight);        
-    int col = x / self.tileWidth;
+    int col = (int)(x / self.tileWidth);
 
     if(touch.tapCount == 1) { 
 
@@ -131,10 +131,10 @@
     }
     
     // calculate which rows and columns are visible by doing a bunch of math.
-    int firstNeededRow = MAX(0, floorf(visibleBounds.origin.y / tileHeight));
-    int firstNeededCol = MAX(0, floorf(visibleBounds.origin.x / tileWidth));
-    int lastNeededRow  = floorf((visibleBounds.origin.y + visibleBounds.size.height) / tileHeight);
-    int lastNeededCol  = floorf((visibleBounds.origin.x + visibleBounds.size.width) / tileWidth);
+    int firstNeededRow = MAX(0, (NSInteger)floorf(visibleBounds.origin.y / tileHeight));
+    int firstNeededCol = MAX(0, (NSInteger)floorf(visibleBounds.origin.x / tileWidth));
+    int lastNeededRow  = (NSInteger)floorf((visibleBounds.origin.y + visibleBounds.size.height) / tileHeight);
+    int lastNeededCol  = (NSInteger)floorf((visibleBounds.origin.x + visibleBounds.size.width) / tileWidth);
          
 
     // iterate through needed rows and columns, adding any tiles that are missing
