@@ -286,8 +286,7 @@
     if ([[data objectForKey:@"ads"] isEqual:@"iAds"]) {
         if (!self.adView) {
             NSLog(@"initializing adView");
-            self.adView = [[ADBannerView alloc] initWithFrame:CGRectZero]; 
-            adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50; 
+            self.adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
             adView.frame = CGRectMake(0, -50, 320, 50);
             adView.delegate = self;
             [self.view addSubview:adView];
