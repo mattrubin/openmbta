@@ -53,12 +53,6 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    self.triggerCalloutTimer = nil;
-    self.selectedStopName = nil;
-    self.selectedStopAnnotation = nil;
-    [super dealloc];
-}
 
 - (void)prepareMap:(NSDictionary *)regionInfo {
     [mapView removeAnnotations:self.stopAnnotations];
@@ -100,7 +94,6 @@
         coordinate.longitude = [[stopDict objectForKey:@"lng"] doubleValue];
         annotation.coordinate = coordinate;
         [self.stopAnnotations addObject:annotation];
-        [annotation release];
     }
     [mapView addAnnotations:self.stopAnnotations];    
     if (!self.selectedStopAnnotation) {
@@ -137,7 +130,6 @@
     for (id annotation in self.stopAnnotations) {
         CLLocation *stopLocation = [[CLLocation alloc] initWithCoordinate:((StopAnnotation *)annotation).coordinate altitude:0 horizontalAccuracy:kCLLocationAccuracyNearestTenMeters verticalAccuracy:kCLLocationAccuracyHundredMeters timestamp:[NSDate date]];
         CLLocationDistance distance = [stopLocation distanceFromLocation:location];
-        [stopLocation release];
         if ((minDistance == -1) || (distance < minDistance)) {
             self.selectedStopAnnotation = (StopAnnotation *)annotation;
             self.selectedStopName = self.selectedStopAnnotation.subtitle;
@@ -217,7 +209,7 @@
     static NSString *pinID = @"mbtaPin";
 	MKPinAnnotationView *pinView =  (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinID];
     if (pinView == nil) {
-        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinID] autorelease];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinID];
         //pinView.pinColor = MKPinAnnotationColorRed;
         pinView.canShowCallout = YES;
         //pinView.animatesDrop = YES; // this causes a callout bug where the callout get obscured by some pins

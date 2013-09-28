@@ -59,12 +59,8 @@
         cancelButtonTitle:@"OK" 
         otherButtonTitles:nil]; 
         [alert show]; 
-        [alert release];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 // loading indicator

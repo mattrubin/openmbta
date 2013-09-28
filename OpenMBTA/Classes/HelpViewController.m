@@ -37,21 +37,12 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    self.viewName = nil;
-    self.transportType = nil;
-    self.webView = nil;
-    self.request = nil;
-    self.progressView = nil;
-    [super dealloc];
-}
 
 - (void)loadWebView {
     NSString *urlString = [NSString stringWithFormat:@"%@/help/%@/%@?version=3", ServerURL, self.viewName, self.transportType];
     NSString *urlStringEscaped = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];    
     NSURL *url = [[NSURL alloc] initWithString: urlStringEscaped];
     self.request = [[NSURLRequest alloc] initWithURL: url]; 
-    [url release];
     [self showLoadingIndicators];
     [self.webView loadRequest:self.request];
 }

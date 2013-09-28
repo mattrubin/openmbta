@@ -29,14 +29,14 @@
     TripsViewController *tripsViewController;
 }
 @property (nonatomic, copy) NSString *nearestStopId;
-@property (nonatomic, retain) IBOutlet GridScrollView *scrollView;	// holds floating grid
-@property (nonatomic, retain) NSMutableArray *gridTimes;
+@property (nonatomic, strong) IBOutlet GridScrollView *scrollView;	// holds floating grid
+@property (nonatomic, strong) NSMutableArray *gridTimes;
 @property (nonatomic, copy) NSNumber *gridID;
-@property (nonatomic, retain) NSArray *stops;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSString *selectedStopName;
-@property (nonatomic, retain) NSArray *orderedStopNames;
-@property (nonatomic, retain) TripsViewController *tripsViewController;
+@property (nonatomic, strong) NSArray *stops;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSString *selectedStopName;
+@property (nonatomic, strong) NSArray *orderedStopNames;
+@property (nonatomic, strong) TripsViewController *tripsViewController;
 @property int selectedRow;
 
 - (void)highlightNearestStop:(NSString *)stopId;

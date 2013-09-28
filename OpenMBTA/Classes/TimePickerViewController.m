@@ -21,10 +21,6 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    [timePicker release];
-    [super dealloc];
-}
 
 - (IBAction)doneButtonPressed:(id)sender {
     NSDate *selected = [timePicker date];

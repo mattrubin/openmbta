@@ -63,12 +63,6 @@ const int kCellWidth = 44;
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-    self.nearestStopId = nil;
-    self.orderedStopNames = nil;
-    self.tripsViewController = nil;
-    [super dealloc];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 //   [self.tableView reloadData];
@@ -175,7 +169,6 @@ const int kCellWidth = 44;
     
     label.frame = CGRectMake(5, 15, kCellWidth, kRowHeight - 15);
     [view addSubview:label];
-    [label release];
 
     
     return (UIView *)view; 

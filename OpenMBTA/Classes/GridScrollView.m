@@ -47,11 +47,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [reusableTiles release];
-    self.stops = nil;
-    [super dealloc];
-}
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
     UITouch *touch = [touches anyObject]; 
@@ -94,7 +89,8 @@
     if (tile) {
         // the only object retaining the tile is our reusableTiles set, so we have to retain/autorelease it
         // before returning it so that it's not immediately deallocated when we remove it from the set
-        [[tile retain] autorelease];
+        // TODO: check for prematurely released tile
+        // [[tile retain] autorelease];
         [reusableTiles removeObject:tile];
     }
     return tile;
@@ -149,7 +145,7 @@
                                   lastVisibleRow  < row || lastVisibleColumn  < col);
             
             if (tileIsMissing) {
-                UIView *tile = [[dataSource gridScrollView:self tileForRow:row column:col] autorelease];
+                UIView *tile = [dataSource gridScrollView:self tileForRow:row column:col];
                 if (tile) {
                                     
                     // set the tile's frame so we insert it at the correct position

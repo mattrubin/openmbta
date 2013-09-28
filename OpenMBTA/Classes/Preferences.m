@@ -33,7 +33,6 @@
         prefs = [[NSMutableDictionary alloc] initWithCapacity: 3];
         [prefs setObject:[NSMutableArray array] forKey:@"bookmarks"];
     }
-    [prefs autorelease];
     return prefs;
 };
 

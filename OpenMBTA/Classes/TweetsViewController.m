@@ -27,7 +27,6 @@
     //NSLog(@"calling %@", urlString);
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     self.request = [[NSURLRequest alloc] initWithURL: url]; 
-    [url release];
     [self showLoadingIndicators];
     [self.webView loadRequest:self.request];    
 }
@@ -36,9 +35,6 @@
     [self.webView reload];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

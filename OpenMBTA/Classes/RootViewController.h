@@ -25,11 +25,11 @@
     NSArray *bookmarks;
 }
 
-@property (nonatomic, retain) TripsViewController *tripsViewController;
-@property (nonatomic,retain) NSArray *menu;
-@property (nonatomic,retain) NSArray *menu2;
-@property (nonatomic,retain) NSArray *bookmarks;
-@property (nonatomic,retain) UITableView *tableView;
+@property (nonatomic, strong) TripsViewController *tripsViewController;
+@property (nonatomic,strong) NSArray *menu;
+@property (nonatomic,strong) NSArray *menu2;
+@property (nonatomic,strong) NSArray *bookmarks;
+@property (nonatomic,strong) UITableView *tableView;
 - (void)loadLastViewedTrip;
 
 @end

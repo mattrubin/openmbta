@@ -15,9 +15,9 @@
     UIAlertView *reachabilityAlert; 
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) UIAlertView *reachabilityAlert;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, strong) UIAlertView *reachabilityAlert;
 - (void) showReachabilityAlert;
 - (void) testReachability;
 

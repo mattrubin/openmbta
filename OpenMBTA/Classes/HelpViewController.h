@@ -21,11 +21,11 @@
     
     
 }
-@property (retain, nonatomic) UIView *progressView;
+@property (strong, nonatomic) UIView *progressView;
 @property (nonatomic, copy) NSString *viewName;
 @property (nonatomic, copy) NSString *transportType;
-@property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, retain) NSURLRequest *request;
+@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) NSURLRequest *request;
 - (IBAction)doneButtonPressed:(id)sender;
 - (void)showLoadingIndicators;
 - (void)hideLoadingIndicators;

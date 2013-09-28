@@ -19,13 +19,4 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [title release];
-    [subtitle release];
-    [stop_id release];
-    [next_arrivals release];
-    [numNextArrivals release];    
-    [super dealloc];
-}
 @end

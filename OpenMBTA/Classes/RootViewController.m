@@ -33,16 +33,6 @@
     //[self.navigationController pushViewController:[self routesViewController] animated:YES];
 }
 
-- (void)dealloc {
-    [routesViewController release];
-    [tAlertsViewController release];
-    self.tripsViewController = nil;
-    self.menu = nil;
-    self.menu2 = nil;
-    self.bookmarks = nil;
-    self.tableView = nil;
-    [super dealloc];
-}
 
 #pragma mark Table view methods
 
@@ -80,7 +70,7 @@
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
         // Configure the cell.
@@ -99,7 +89,7 @@
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
 
@@ -164,7 +154,6 @@
         if (indexPath.row == 2) { 
             AboutViewController *vc = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
             [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
             return;
         }
         

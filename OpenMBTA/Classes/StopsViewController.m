@@ -59,11 +59,6 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    self.tripsViewController = nil;
-    self.orderedStopNames = nil;
-    [super dealloc];
-}
 
 - (void)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -99,7 +94,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0]; 
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 

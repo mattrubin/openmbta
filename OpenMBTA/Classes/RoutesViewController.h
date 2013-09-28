@@ -20,11 +20,11 @@
     NSString *lineHeadsign; // only used when used as a second level CR menu
     BOOL shouldReloadData;
 }
-@property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) NSArray *data;
-@property (nonatomic, retain) NSString *transportType;
-@property (nonatomic, retain) NSString *lineName;
-@property (nonatomic, retain) NSString *lineHeadsign;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSString *transportType;
+@property (nonatomic, strong) NSString *lineName;
+@property (nonatomic, strong) NSString *lineHeadsign;
 @property (nonatomic, getter=shouldReloadData) BOOL shouldReloadData;
 - (void)reset;
 @end

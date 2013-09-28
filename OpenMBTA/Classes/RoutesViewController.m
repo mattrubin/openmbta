@@ -64,15 +64,6 @@
     [self.tableView reloadData];
 }
 
-- (void)dealloc {
-    self.tableView = nil;
-    self.data = nil;
-    self.lineName = nil;
-    self.lineHeadsign = nil;    
-    self.transportType = nil;
-    [operationQueue release];
-    [super dealloc];
-}
 
 - (void)refresh:(id)sender {
     [self startLoadingData];
@@ -96,7 +87,6 @@
     GetRemoteDataOperation *operation = [[GetRemoteDataOperation alloc] initWithURL:apiUrlEscaped target:self action:@selector(didFinishLoadingData:)];
     
     [operationQueue addOperation:operation];
-    [operation release];
 }
 
 - (void)didFinishLoadingData:(NSString *)rawData 
@@ -122,7 +112,7 @@
     for (NSDictionary *section in self.data) {
         [sectionTitles addObject:[section objectForKey:@"route_short_name"]];
     }
-    return [sectionTitles autorelease];
+    return sectionTitles;
 }
 
 // Customize the number of rows in the table view.
@@ -146,7 +136,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
 

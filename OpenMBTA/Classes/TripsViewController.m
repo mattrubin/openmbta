@@ -139,25 +139,6 @@
     
 }
 
-- (void)dealloc {
-    self.adView = nil;
-    self.imminentStops = nil;
-    self.orderedStopIds = nil;
-    self.orderedStopNames = nil;
-    self.firstStops = nil;    
-    self.stops = nil;
-    self.regionInfo = nil;
-    self.headsign = nil;
-    self.routeShortName = nil;
-    self.selectedStopId = nil;
-    self.location = nil;
-    [locationManager release];
-    [operationQueue release];
-    self.mapViewController = nil;
-    self.scheduleViewController = nil;
-
-    [super dealloc];
-}
 
 - (BOOL)isBookmarked {
     Preferences *prefs = [Preferences sharedInstance]; 
@@ -236,7 +217,6 @@
     NSString *apiUrlEscaped = [apiUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     GetRemoteDataOperation *operation = [[GetRemoteDataOperation alloc] initWithURL:apiUrlEscaped target:self action:@selector(didFinishLoadingData:)];
     [operationQueue addOperation:operation];
-    [operation release];
 }
 
 - (void)didFinishLoadingData:(NSString *)rawData {
@@ -290,7 +270,6 @@
             adView.frame = CGRectMake(0, -50, 320, 50);
             adView.delegate = self;
             [self.view addSubview:adView];
-            [adView release];
             [self adjustFrames];
         }
     } else if (self.adView) {
@@ -359,7 +338,6 @@
     vc.viewName = self.segmentedControl.selectedSegmentIndex == 0 ? @"map" : @"schedule";
     vc.transportType = self.transportType;
     [self presentViewController:vc animated:YES completion:nil];
-    [vc release];
     
 }
 

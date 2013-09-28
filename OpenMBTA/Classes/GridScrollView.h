@@ -13,7 +13,7 @@
 
 
 @interface GridScrollView : UIScrollView {
-    id <GridScrollViewDataSource>  dataSource;
+    id <GridScrollViewDataSource>  __weak dataSource;
     
     NSMutableSet *reusableTiles;    
     
@@ -25,8 +25,8 @@
 
     NSArray *stops;
 }
-@property (nonatomic, assign) id <GridScrollViewDataSource> dataSource;
-@property (nonatomic, retain) NSArray *stops;
+@property (nonatomic, weak) id <GridScrollViewDataSource> dataSource;
+@property (nonatomic, strong) NSArray *stops;
 @property float tileHeight;
 @property float tileWidth;
 
