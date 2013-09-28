@@ -146,7 +146,7 @@
     return ([prefs isBookmarked:bookmark]);
 }
 
-- (void)addBookmarkButton; {
+- (void)addBookmarkButton {
     if (self.navigationItem.rightBarButtonItem != nil)
         return;
     
