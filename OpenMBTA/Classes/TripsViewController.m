@@ -11,7 +11,7 @@
 #import "Preferences.h"
 #import "ServerUrl.h"
 #import <CoreLocation/CoreLocation.h>
-#import "JSON.h"
+#import <SBJson/SBJson.h>
 #import "MapViewController.h"
 #import "ScheduleViewController.h"
 #import "StopsViewController.h"

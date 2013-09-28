@@ -11,7 +11,7 @@
 #import "ServerUrl.h"
 #import "GridCell.h"
 #import "GetRemoteDataOperation.h"
-#import "JSON.h"
+#import <SBJson/SBJson.h>
 
 const int kRowHeight = 50;
 const int kCellWidth = 44;
