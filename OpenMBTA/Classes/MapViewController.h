@@ -31,7 +31,7 @@
 @property (nonatomic, strong) NSTimer *triggerCalloutTimer;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, copy) NSString *selectedStopName;
-@property MKCoordinateRegion initialRegion;
+@property (nonatomic, assign) MKCoordinateRegion initialRegion;
 - (void)prepareMap:(NSDictionary *)regionInfo;
 - (void)annotateStops:(NSDictionary *)stops imminentStops:(NSArray *)imminentStops firstStops:(NSArray *)firstStops isRealTime:(BOOL)isRealTime;
 - (NSString *)stopAnnotationTitle:(NSArray *)nextArrivals isRealTime:(BOOL)isRealTime; 

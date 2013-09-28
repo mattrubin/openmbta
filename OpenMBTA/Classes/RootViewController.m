@@ -161,7 +161,7 @@
         
         
     } else {
-        if (indexPath.row < [self.bookmarks count]) {
+        if (indexPath.row < (NSInteger)self.bookmarks.count) {
             NSDictionary *bookmark = (self.bookmarks)[indexPath.row];
             NSString *transportType = bookmark[@"transportType"];
             NSString *headsign  = bookmark[@"headsign"];

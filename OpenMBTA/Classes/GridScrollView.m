@@ -54,14 +54,14 @@
     float y = location.y; 
     float x = location.x;
     int row = (int)(y / self.tileHeight);        
-    int col = x / self.tileWidth;
+    int col = (int)(x / self.tileWidth);
 
     if(touch.tapCount == 1) { 
 
         
         // yeah this is poor encapsulation, but life is short
         ScheduleViewController *scheduleViewController = (ScheduleViewController *)self.dataSource;
-        if  (row < [scheduleViewController.orderedStopNames count]) {
+        if  (row < (NSInteger)scheduleViewController.orderedStopNames.count) {
 //            NSString *stopName = [scheduleViewController.orderedStopNames objectAtIndex:row];
  //           TripsViewController *tripViewController = scheduleViewController.tripsViewController;
 //            [tripViewController highlightStopNamed:stopName];
@@ -72,7 +72,7 @@
     } 
     if(touch.tapCount == 2) { 
         ScheduleViewController *scheduleViewController = (ScheduleViewController *)self.dataSource;
-        if  (row < [scheduleViewController.orderedStopNames count]) {
+        if  (row < (NSInteger)scheduleViewController.orderedStopNames.count) {
             //            NSString *stopName = [scheduleViewController.orderedStopNames objectAtIndex:row];
             //           TripsViewController *tripViewController = scheduleViewController.tripsViewController;
             //            [tripViewController highlightStopNamed:stopName];
@@ -131,10 +131,10 @@
     }
     
     // calculate which rows and columns are visible by doing a bunch of math.
-    int firstNeededRow = MAX(0, floorf(visibleBounds.origin.y / tileHeight));
-    int firstNeededCol = MAX(0, floorf(visibleBounds.origin.x / tileWidth));
-    int lastNeededRow  = floorf((visibleBounds.origin.y + visibleBounds.size.height) / tileHeight);
-    int lastNeededCol  = floorf((visibleBounds.origin.x + visibleBounds.size.width) / tileWidth);
+    int firstNeededRow = MAX(0, (NSInteger)floorf(visibleBounds.origin.y / tileHeight));
+    int firstNeededCol = MAX(0, (NSInteger)floorf(visibleBounds.origin.x / tileWidth));
+    int lastNeededRow  = (NSInteger)floorf((visibleBounds.origin.y + visibleBounds.size.height) / tileHeight);
+    int lastNeededCol  = (NSInteger)floorf((visibleBounds.origin.x + visibleBounds.size.width) / tileWidth);
          
 
     // iterate through needed rows and columns, adding any tiles that are missing
@@ -145,7 +145,8 @@
                                   lastVisibleRow  < row || lastVisibleColumn  < col);
             
             if (tileIsMissing) {
-                UIView *tile = [dataSource gridScrollView:self tileForRow:row column:col];
+                id theDataSource = self.dataSource; // Retain the data source, so the weak property can't be dealloc'ed while we're using it
+                UIView *tile = [theDataSource gridScrollView:self tileForRow:row column:col];
                 if (tile) {
                                     
                     // set the tile's frame so we insert it at the correct position

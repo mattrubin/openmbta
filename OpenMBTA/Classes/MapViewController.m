@@ -42,13 +42,6 @@
     // override this so we don't lose the view if not visible 
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    [self.stopAnnotations removeAllObjects];
-    self.tripsViewController = nil;
-    self.stopAnnotations = nil; 
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
@@ -82,8 +75,9 @@
         NSDictionary *stopDict = stops[stop_id];
         NSString *stopName =  stopDict[@"name"];
         annotation.subtitle = stopName;
-        annotation.title = [self stopAnnotationTitle:((NSArray *)stopDict[@"next_arrivals"]) isRealTime:isRealTime];
-        annotation.numNextArrivals = [NSNumber numberWithInt:[stopDict[@"next_arrivals"] count]];
+        NSArray *nextArrivals = stopDict[@"next_arrivals"];
+        annotation.title = [self stopAnnotationTitle:nextArrivals isRealTime:isRealTime];
+        annotation.numNextArrivals = [NSNumber numberWithInt:nextArrivals.count];
         annotation.stop_id = stop_id;
         if ([imminentStops containsObject:stop_id]) {
             annotation.isNextStop = YES;
@@ -126,7 +120,7 @@
 
     self.selectedStopAnnotation = nil;
     self.selectedStopName = nil;
-    float minDistance = -1;
+    CLLocationDistance minDistance = -1;
     for (id annotation in self.stopAnnotations) {
         CLLocation *stopLocation = [[CLLocation alloc] initWithCoordinate:((StopAnnotation *)annotation).coordinate altitude:0 horizontalAccuracy:kCLLocationAccuracyNearestTenMeters verticalAccuracy:kCLLocationAccuracyHundredMeters timestamp:[NSDate date]];
         CLLocationDistance distance = [stopLocation distanceFromLocation:location];

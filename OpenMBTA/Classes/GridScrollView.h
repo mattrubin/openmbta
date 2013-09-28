@@ -27,8 +27,8 @@
 }
 @property (nonatomic, weak) id <GridScrollViewDataSource> dataSource;
 @property (nonatomic, strong) NSArray *stops;
-@property float tileHeight;
-@property float tileWidth;
+@property (nonatomic, assign) float tileHeight;
+@property (nonatomic, assign) float tileWidth;
 
 - (UIView *)dequeueReusableTile;  // Used by the delegate to acquire an already allocated tile, in lieu of allocating a new one.
 

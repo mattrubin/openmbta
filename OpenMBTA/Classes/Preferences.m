@@ -34,13 +34,13 @@
         prefs[@"bookmarks"] = [NSMutableArray array];
     }
     return prefs;
-};
+}
 
 NSInteger bookmarkSort(NSDictionary *bookmark1, NSDictionary *bookmark2, void *context) {
-    NSComparisonResult result1 = [bookmark1[@"transportType"] compare:bookmark2[@"transportType"]];
-    NSComparisonResult result2 = [bookmark1[@"routeShortName"] compare:bookmark2[@"routeShortName"]];
-    NSComparisonResult result3 = [bookmark1[@"headsign"] compare:bookmark2[@"headsign"]];
-    NSComparisonResult result4 = [bookmark1[@"firstStop"] compare:bookmark2[@"firstStop"]];
+    NSComparisonResult result1 = [(NSString *)bookmark1[@"transportType"] compare:bookmark2[@"transportType"]];
+    NSComparisonResult result2 = [(NSString *)bookmark1[@"routeShortName"] compare:bookmark2[@"routeShortName"]];
+    NSComparisonResult result3 = [(NSString *)bookmark1[@"headsign"] compare:bookmark2[@"headsign"]];
+    NSComparisonResult result4 = [(NSString *)bookmark1[@"firstStop"] compare:bookmark2[@"firstStop"]];
 
     if (result1 != NSOrderedSame) {
         if ([bookmark1[@"transportType"] isEqualToString:@"Boat"])

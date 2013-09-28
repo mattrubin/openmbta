@@ -75,9 +75,9 @@
 @property (nonatomic, strong) IBOutlet StopsViewController *stopsViewController;
 @property (nonatomic, strong) NSMutableArray *orderedStopNames;
 @property (nonatomic, strong) UIBarButtonItem *bookmarkButton; 
-@property BOOL bannerIsVisible;
+@property (nonatomic, assign)BOOL bannerIsVisible;
 @property (nonatomic, strong) ADBannerView *adView;
-@property  NSInteger startOnSegmentIndex;
+@property (nonatomic, assign) NSInteger startOnSegmentIndex;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *findStopButton;
 @property (nonatomic, strong)   UIView *findingProgressView;
 
@@ -90,7 +90,6 @@
 - (void)reloadData:(id)sender;
 - (void)toggleBookmark:(id)sender;
 - (BOOL)isBookmarked;
-- (void)toggleBookmark:(id)sender;
 - (IBAction)infoButtonPressed:(id)sender;
 
 - (void)showFindingIndicators;
