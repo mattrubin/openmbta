@@ -30,7 +30,6 @@
 		DE4212791183AA8E00757B6A /* favoritesButton_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4212781183AA8E00757B6A /* favoritesButton_clicked.png */; };
 		DE4213061184891300757B6A /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4213051184891300757B6A /* TweetsViewController.m */; };
 		DE8245621086A70D004ABB2F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8245611086A70D004ABB2F /* Default.png */; };
-		DE8245711086A8B8004ABB2F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE8245701086A8B8004ABB2F /* icon.png */; };
 		DEAF726C117DDD5200A36ABD /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAF726B117DDD5200A36ABD /* Preferences.m */; };
 		DEAF7336117DF0E900A36ABD /* action-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAF7335117DF0E900A36ABD /* action-pressed.png */; };
 		DEC08091107EBE0C00B22DE8 /* trips-bus-1.json in Resources */ = {isa = PBXBuildFile; fileRef = DEC08090107EBE0C00B22DE8 /* trips-bus-1.json */; };
@@ -96,7 +95,6 @@
 		DE4213041184891300757B6A /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		DE4213051184891300757B6A /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		DE8245611086A70D004ABB2F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		DE8245701086A8B8004ABB2F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DEAF726A117DDD5200A36ABD /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		DEAF726B117DDD5200A36ABD /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		DEAF7335117DF0E900A36ABD /* action-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-pressed.png"; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 				DE4212731183AA0E00757B6A /* favoritesButton.png */,
 				DEAF7335117DF0E900A36ABD /* action-pressed.png */,
 				DEEB1EC1108A3E1F0033C851 /* TrackingDot.png */,
-				DE8245701086A8B8004ABB2F /* icon.png */,
 				DE8245611086A70D004ABB2F /* Default.png */,
 				DEC08090107EBE0C00B22DE8 /* trips-bus-1.json */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
@@ -363,7 +360,6 @@
 				DEE87A2A10853FC50067992D /* AboutViewController.xib in Resources */,
 				DE8245621086A70D004ABB2F /* Default.png in Resources */,
 				C9DAF70C17F74DC30063B5CE /* Images.xcassets in Resources */,
-				DE8245711086A8B8004ABB2F /* icon.png in Resources */,
 				DEEB1EC2108A3E1F0033C851 /* TrackingDot.png in Resources */,
 				DEAF7336117DF0E900A36ABD /* action-pressed.png in Resources */,
 				DE4212741183AA0E00757B6A /* favoritesButton.png in Resources */,
