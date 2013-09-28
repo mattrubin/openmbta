@@ -72,7 +72,7 @@
     [self addBookmarkButton];
     if (self.shouldReloadData) {
         
-        self.stops = [NSDictionary dictionary];
+        self.stops = @{};
         self.mapViewController.selectedStopAnnotation = nil;
         [self startLoadingData];
         
@@ -188,7 +188,7 @@
 - (void)reloadData:(id)sender {    
     [self.mapViewController.stopAnnotations removeAllObjects];
     self.mapViewController.selectedStopAnnotation = nil;
-    self.stops = [NSDictionary dictionary];
+    self.stops = @{};
     [self startLoadingData];
 }
 
@@ -222,22 +222,22 @@
 - (void)didFinishLoadingData:(NSString *)rawData {
     if (rawData == nil) return;
     NSDictionary *data = [rawData JSONValue];
-    scheduleViewController.stops = [data objectForKey:@"grid"];
+    scheduleViewController.stops = data[@"grid"];
 
     
     BOOL isRealTime = NO;
-    if ([data objectForKey:@"realtime"]) {
+    if (data[@"realtime"]) {
         isRealTime = YES;
         // do something in view to indicate
     }
     [self checkForMessage:data];
-    self.stops = [data objectForKey:@"stops"];
+    self.stops = data[@"stops"];
 
     // construct GRID
-    self.orderedStopIds = [data objectForKey:@"ordered_stop_ids"]; // will use in the table
-    self.imminentStops = [data objectForKey:@"imminent_stop_ids"];
-    self.firstStops = [data objectForKey:@"first_stop"]; // an array of stop names
-    self.regionInfo = [data objectForKey:@"region"];
+    self.orderedStopIds = data[@"ordered_stop_ids"]; // will use in the table
+    self.imminentStops = data[@"imminent_stop_ids"];
+    self.firstStops = data[@"first_stop"]; // an array of stop names
+    self.regionInfo = data[@"region"];
 
     if (shouldReloadRegion == YES) {
         [mapViewController prepareMap:regionInfo];
@@ -247,8 +247,8 @@
     
     self.orderedStopNames = [NSMutableArray arrayWithCapacity:[self.orderedStopIds count]];
     for (id stopId in self.orderedStopIds) {
-        NSDictionary *stop = [self.stops objectForKey:[stopId stringValue] ];
-        [self.orderedStopNames addObject:[stop objectForKey:@"name"]];
+        NSDictionary *stop = (self.stops)[[stopId stringValue]];
+        [self.orderedStopNames addObject:stop[@"name"]];
     }
     [self.stopsViewController loadStopNames:self.orderedStopNames];
     self.scheduleViewController.orderedStopNames = self.orderedStopNames;
@@ -263,7 +263,7 @@
     [scheduleViewController adjustScrollViewFrame];    
     [scheduleViewController alignGridAnimated:NO];
 
-    if ([[data objectForKey:@"ads"] isEqual:@"iAds"]) {
+    if ([data[@"ads"] isEqual:@"iAds"]) {
         if (!self.adView) {
             NSLog(@"initializing adView");
             self.adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
@@ -327,7 +327,7 @@
 
 
 - (void)highlightStopPosition:(int)pos {
-    NSString *stopName = [self.orderedStopNames objectAtIndex:pos];
+    NSString *stopName = (self.orderedStopNames)[pos];
     [self.mapViewController highlightStopNamed:stopName];
 //    [self.scheduleViewController highlightRow:pos showCurrentColumn:NO];
 }

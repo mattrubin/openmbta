@@ -14,8 +14,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.menu = [[NSArray alloc] initWithObjects:@"Bus", @"Commuter Rail", @"Subway", @"Boat", nil];
-    self.menu2 = [[NSArray alloc] initWithObjects:@"T Alerts", @"Tweets #mbta", @"About / FAQ", nil];
+    self.menu = @[@"Bus", @"Commuter Rail", @"Subway", @"Boat"];
+    self.menu2 = @[@"T Alerts", @"Tweets #mbta", @"About / FAQ"];
 
     self.title = @"Main Menu";
 
@@ -77,9 +77,9 @@
 
         NSString *menuChoice;
         if (indexPath.section == 1) 
-            menuChoice = [self.menu objectAtIndex:indexPath.row];
+            menuChoice = (self.menu)[indexPath.row];
         else
-            menuChoice = [self.menu2 objectAtIndex:indexPath.row];
+            menuChoice = (self.menu2)[indexPath.row];
         cell.textLabel.text = menuChoice;
         return cell;  
         
@@ -101,12 +101,12 @@
             return cell;
         }            
         
-        NSDictionary *bookmark = [self.bookmarks objectAtIndex:indexPath.row];
-        NSString *transportType = [bookmark objectForKey:@"transportType"];
+        NSDictionary *bookmark = (self.bookmarks)[indexPath.row];
+        NSString *transportType = bookmark[@"transportType"];
             
-        NSString *headsign  = [bookmark objectForKey:@"headsign"];
-        NSString *routeShortName  = [bookmark objectForKey:@"routeShortName"];
-        NSString *firstStop  = [bookmark objectForKey:@"firstStop"];
+        NSString *headsign  = bookmark[@"headsign"];
+        NSString *routeShortName  = bookmark[@"routeShortName"];
+        NSString *firstStop  = bookmark[@"firstStop"];
         // Configure the cell.
 
         cell.textLabel.text = headsign;
@@ -129,7 +129,7 @@
             routesViewController = [[RoutesViewController alloc] initWithNibName:@"RoutesViewController" bundle:nil];
         }
         
-        NSString *menuChoice = [self.menu objectAtIndex:indexPath.row];
+        NSString *menuChoice = (self.menu)[indexPath.row];
         routesViewController.transportType = menuChoice;
         routesViewController.shouldReloadData = YES;
         [routesViewController reset];
@@ -162,11 +162,11 @@
         
     } else {
         if (indexPath.row < [self.bookmarks count]) {
-            NSDictionary *bookmark = [self.bookmarks objectAtIndex: indexPath.row];
-            NSString *transportType = [bookmark objectForKey:@"transportType"];
-            NSString *headsign  = [bookmark objectForKey:@"headsign"];
-            NSString *routeShortName  = [bookmark objectForKey:@"routeShortName"];
-            NSString *firstStop  = [bookmark objectForKey:@"firstStop"];
+            NSDictionary *bookmark = (self.bookmarks)[indexPath.row];
+            NSString *transportType = bookmark[@"transportType"];
+            NSString *headsign  = bookmark[@"headsign"];
+            NSString *routeShortName  = bookmark[@"routeShortName"];
+            NSString *firstStop  = bookmark[@"firstStop"];
             
             [self tripsViewController].headsign = headsign;
             [self tripsViewController].routeShortName = routeShortName;
@@ -192,11 +192,11 @@
     NSDictionary *lastViewedTrip = [[NSUserDefaults standardUserDefaults]
                                     objectForKey:@"lastViewedTrip"];
     if (lastViewedTrip) {
-        self.tripsViewController.headsign = [lastViewedTrip objectForKey:@"headsign"];
-        self.tripsViewController.routeShortName = [lastViewedTrip objectForKey:@"routeShortName"];
-        self.tripsViewController.transportType = [lastViewedTrip objectForKey:@"transportType"];;
-        self.tripsViewController.firstStop = [lastViewedTrip objectForKey:@"firstStop"];
-        self.tripsViewController.startOnSegmentIndex = [[lastViewedTrip objectForKey:@"selectedSegmentIndex"] intValue];        
+        self.tripsViewController.headsign = lastViewedTrip[@"headsign"];
+        self.tripsViewController.routeShortName = lastViewedTrip[@"routeShortName"];
+        self.tripsViewController.transportType = lastViewedTrip[@"transportType"];;
+        self.tripsViewController.firstStop = lastViewedTrip[@"firstStop"];
+        self.tripsViewController.startOnSegmentIndex = [lastViewedTrip[@"selectedSegmentIndex"] intValue];        
         self.tripsViewController.shouldReloadRegion = YES;
         self.tripsViewController.shouldReloadData = YES;
 

@@ -30,7 +30,7 @@
     if (intervalFromNow > (2 * 60)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BaseTimeChanged"
                                                             object:self
-                                                          userInfo:[NSDictionary dictionaryWithObject:selected forKey:@"NewBaseTime"]];
+                                                          userInfo:@{@"NewBaseTime": selected}];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BaseTimeChanged"
                                                             object:self

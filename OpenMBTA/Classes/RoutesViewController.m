@@ -94,7 +94,7 @@
     [self hideNetworkActivity];
     NSLog(@"raw Data: %@", rawData);
     NSDictionary *rawDict = [rawData JSONValue];
-    self.data = [rawDict objectForKey:@"data"];
+    self.data = rawDict[@"data"];
     [self checkForMessage:rawDict];
     [self.tableView reloadData];
 }
@@ -110,22 +110,22 @@
 {
     NSMutableArray *sectionTitles = [[NSMutableArray alloc] init];
     for (NSDictionary *section in self.data) {
-        [sectionTitles addObject:[section objectForKey:@"route_short_name"]];
+        [sectionTitles addObject:section[@"route_short_name"]];
     }
     return sectionTitles;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex {
-    NSDictionary *section = [self.data objectAtIndex:sectionIndex];
-    NSArray *headsigns = [section objectForKey:@"headsigns"];
+    NSDictionary *section = (self.data)[sectionIndex];
+    NSArray *headsigns = section[@"headsigns"];
     return [headsigns count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)sectionIndex
 {
-    NSDictionary *section = [self.data objectAtIndex:sectionIndex];
-    NSString *routeShortName = [section objectForKey:@"route_short_name"];
+    NSDictionary *section = (self.data)[sectionIndex];
+    NSString *routeShortName = section[@"route_short_name"];
     return routeShortName;
 }
 
@@ -148,17 +148,17 @@
     }
 	// Configure the cell.
 
-    NSDictionary *routeGroup = [self.data objectAtIndex:indexPath.section];
-    NSArray *headsigns = [routeGroup objectForKey:@"headsigns"];
-    NSArray *headsignArray = [headsigns objectAtIndex:indexPath.row];
-    NSString *headsign = [headsignArray objectAtIndex:0];
+    NSDictionary *routeGroup = (self.data)[indexPath.section];
+    NSArray *headsigns = routeGroup[@"headsigns"];
+    NSArray *headsignArray = headsigns[indexPath.row];
+    NSString *headsign = headsignArray[0];
 
     cell.textLabel.text = headsign;
     if ([self.transportType isEqualToString: @"Subway"]) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"from %@", [headsignArray objectAtIndex:2]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"from %@", headsignArray[2]];
     } else {
 
-        NSNumber *trips_remaining = [headsignArray objectAtIndex:1];
+        NSNumber *trips_remaining = headsignArray[1];
         NSString *tripText;
 
         if ([trips_remaining intValue] == 0) {
@@ -169,7 +169,7 @@
         }
         if ([headsignArray count] == 3 && [trips_remaining intValue] > 0) {
             // 3rd element is (+ realtime day)
-            tripText = [NSString stringWithFormat:@"%@ %@", tripText, [headsignArray objectAtIndex:2]];
+            tripText = [NSString stringWithFormat:@"%@ %@", tripText, headsignArray[2]];
         }
 
         cell.detailTextLabel.text = tripText;
@@ -180,11 +180,11 @@
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     
-    NSDictionary *routeGroup = [self.data objectAtIndex:indexPath.section];
-    NSString *routeShortName = [routeGroup objectForKey:@"route_short_name"];
-    NSArray *headsigns = [routeGroup objectForKey:@"headsigns"];
-    NSArray *headsignArray = [headsigns objectAtIndex:indexPath.row];
-    NSString *headsign = [headsignArray objectAtIndex:0];
+    NSDictionary *routeGroup = (self.data)[indexPath.section];
+    NSString *routeShortName = routeGroup[@"route_short_name"];
+    NSArray *headsigns = routeGroup[@"headsigns"];
+    NSArray *headsignArray = headsigns[indexPath.row];
+    NSString *headsign = headsignArray[0];
     /*
     
     if ([self.transportType isEqualToString:@"Commuter Rail"] && self.lineName == nil) {
@@ -205,7 +205,7 @@
         [self tripsViewController].routeShortName = routeShortName;
         [self tripsViewController].transportType = self.transportType;
         if ([self.transportType isEqualToString: @"Subway"]) 
-            [self tripsViewController].firstStop = [headsignArray objectAtIndex:2];
+            [self tripsViewController].firstStop = headsignArray[2];
         else
             [self tripsViewController].firstStop = nil;
 
