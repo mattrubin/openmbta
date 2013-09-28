@@ -34,7 +34,7 @@
         prefs[@"bookmarks"] = [NSMutableArray array];
     }
     return prefs;
-};
+}
 
 NSInteger bookmarkSort(NSDictionary *bookmark1, NSDictionary *bookmark2, void *context) {
     NSComparisonResult result1 = [bookmark1[@"transportType"] compare:bookmark2[@"transportType"]];
