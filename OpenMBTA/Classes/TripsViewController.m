@@ -127,19 +127,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    mapViewController.tripsViewController = nil;
-    scheduleViewController.tripsViewController = nil;
-    stopsViewController.tripsViewController = nil;
-    self.findStopButton = nil;
-    self.findingProgressView = nil;
-    
-}
-
-
 - (BOOL)isBookmarked {
     Preferences *prefs = [Preferences sharedInstance]; 
     NSDictionary *bookmark = [NSDictionary dictionaryWithObjectsAndKeys: headsign, @"headsign", routeShortName, @"routeShortName", transportType, @"transportType", firstStop, @"firstStop", nil];

@@ -43,13 +43,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    self.tableView = nil;    
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     if (self.selectedStopName) {
         int row = [self.orderedStopNames indexOfObject:self.selectedStopName];    

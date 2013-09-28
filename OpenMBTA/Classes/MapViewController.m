@@ -42,13 +42,6 @@
     // override this so we don't lose the view if not visible 
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    [self.stopAnnotations removeAllObjects];
-    self.tripsViewController = nil;
-    self.stopAnnotations = nil; 
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }

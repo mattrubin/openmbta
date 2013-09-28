@@ -57,13 +57,6 @@ const int kCellWidth = 44;
     // override this so we don't lose the view if not visible 
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-
 - (void)viewWillAppear:(BOOL)animated {
 //   [self.tableView reloadData];
 //    [self.view bringSubviewToFront:self.scrollView];
