@@ -145,7 +145,8 @@
                                   lastVisibleRow  < row || lastVisibleColumn  < col);
             
             if (tileIsMissing) {
-                UIView *tile = [dataSource gridScrollView:self tileForRow:row column:col];
+                id theDataSource = self.dataSource; // Retain the data source, so the weak property can't be dealloc'ed while we're using it
+                UIView *tile = [theDataSource gridScrollView:self tileForRow:row column:col];
                 if (tile) {
                                     
                     // set the tile's frame so we insert it at the correct position
