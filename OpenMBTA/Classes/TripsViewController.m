@@ -325,10 +325,10 @@
 
 - (void)adjustFrames {
     if (bannerIsVisible) {
-        mapViewController.view.frame = CGRectMake(0, 50, 320, 275); 
+        mapViewController.view.frame = mapViewController.view.superview.bounds;
         scheduleViewController.view.frame = CGRectMake(0, 50, 320, 275);         
     } else {
-        mapViewController.view.frame = CGRectMake(0, 50, 320, 322); 
+        mapViewController.view.frame = mapViewController.view.superview.bounds;
         scheduleViewController.view.frame = CGRectMake(0, 50, 320, 322);     
     }
     [scheduleViewController adjustScrollViewFrame];
@@ -374,7 +374,7 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
     NSLog(@"banner view did load banner");
-    banner.frame = CGRectMake(0, 325, 320, 50);        
+    banner.frame = CGRectMake(0, mapViewController.view.frame.size.height-50, 320, 50);
     self.bannerIsVisible = YES;
     [self adjustFrames];
 }
