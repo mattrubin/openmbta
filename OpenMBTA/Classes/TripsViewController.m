@@ -338,7 +338,7 @@
 }
 
 - (void)showStopsController:(id)sender {
-    [self presentModalViewController:self.stopsViewController animated:YES];
+    [self presentViewController:self.stopsViewController animated:YES completion:nil];
 }
 
 - (void)highlightStopNamed:(NSString *)stopName {
@@ -359,7 +359,7 @@
     HelpViewController *vc = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     vc.viewName = self.segmentedControl.selectedSegmentIndex == 0 ? @"map" : @"schedule";
     vc.transportType = self.transportType;
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
     [vc release];
     
 }
