@@ -1,5 +1,5 @@
 #import "GetRemoteDataOperation.h"
-#import "JSON.h"
+#import <SBJson/SBJson.h>
 
 @implementation GetRemoteDataOperation
 @synthesize urlString;
