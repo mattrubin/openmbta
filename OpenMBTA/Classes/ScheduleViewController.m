@@ -135,7 +135,7 @@ const int kCellWidth = 44;
 #pragma mark color grid cell
 
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column {
-    if ((row >= [self.stops count])  || (column >= [(self.stops)[row][@"times"] count])) {
+    if ((row >= (NSInteger)self.stops.count)  || (column >= (NSInteger)[(self.stops)[row][@"times"] count])) {
         return nil;
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
@@ -245,7 +245,7 @@ const int kCellWidth = 44;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if (indexPath.row >= [self.stops count]) {
+    if (indexPath.row >= (NSInteger)self.stops.count) {
         cell.textLabel.text = @"missing";
         cell.detailTextLabel.text = @"missing";
         return cell;
@@ -265,7 +265,7 @@ const int kCellWidth = 44;
     
    // NSLog(@"hightlight row %d showCurrentColumn %d", row, showCurrentColumn);    
     if ([self.stops count] == 0) return;
-    if (row >= [self.stops count]) return;
+    if (row >= (NSInteger)self.stops.count) return;
 
     self.selectedRow = row;
     
