@@ -367,7 +367,7 @@
 
 # pragma mark IAD delegate
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    NSLog(@"banner view did fail to load with error", error);
+    NSLog(@"banner view did fail to load with error: %@", error);
     banner.frame = CGRectOffset(banner.frame, -320, 0);
     self.bannerIsVisible = NO;
     [self adjustFrames];
