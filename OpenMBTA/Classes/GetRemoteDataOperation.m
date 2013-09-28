@@ -29,7 +29,9 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSURL *url = [NSURL URLWithString:urlString];
     
-    NSString *jsonString = [NSString stringWithContentsOfURL:url];
+    NSStringEncoding stringEncoding;
+    NSError *error;
+    NSString *jsonString = [NSString stringWithContentsOfURL:url usedEncoding:&stringEncoding error:&error];
     
     if (!self.isCancelled) {
         [target performSelectorOnMainThread:action withObject:jsonString waitUntilDone:NO];

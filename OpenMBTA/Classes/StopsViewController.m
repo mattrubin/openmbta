@@ -66,7 +66,7 @@
 }
 
 - (void)back:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadStopNames:(NSMutableArray *)stopNames {
@@ -112,7 +112,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 //    NSString *stopName = [self.orderedStopNames objectAtIndex:indexPath.row];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
     NSString *stopName = [self.orderedStopNames objectAtIndex:indexPath.row];
     [self.tripsViewController highlightStopNamed:stopName];

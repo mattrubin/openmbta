@@ -42,18 +42,18 @@
     }
         
         
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)resetButtonPressed:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BaseTimeChanged"
                                                         object:self
                                                       userInfo:nil];    
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

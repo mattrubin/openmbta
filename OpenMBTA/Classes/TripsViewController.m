@@ -72,7 +72,7 @@
     [self addBookmarkButton];
     if (self.shouldReloadData) {
         
-        self.stops = [NSArray array];
+        self.stops = [NSDictionary dictionary];
         self.mapViewController.selectedStopAnnotation = nil;
         [self startLoadingData];
         
@@ -207,7 +207,7 @@
 - (void)reloadData:(id)sender {    
     [self.mapViewController.stopAnnotations removeAllObjects];
     self.mapViewController.selectedStopAnnotation = nil;
-    self.stops = [NSArray array];    
+    self.stops = [NSDictionary dictionary];
     [self startLoadingData];
 }
 
@@ -286,8 +286,7 @@
     if ([[data objectForKey:@"ads"] isEqual:@"iAds"]) {
         if (!self.adView) {
             NSLog(@"initializing adView");
-            self.adView = [[ADBannerView alloc] initWithFrame:CGRectZero]; 
-            adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50; 
+            self.adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
             adView.frame = CGRectMake(0, -50, 320, 50);
             adView.delegate = self;
             [self.view addSubview:adView];
@@ -338,7 +337,7 @@
 }
 
 - (void)showStopsController:(id)sender {
-    [self presentModalViewController:self.stopsViewController animated:YES];
+    [self presentViewController:self.stopsViewController animated:YES completion:nil];
 }
 
 - (void)highlightStopNamed:(NSString *)stopName {
@@ -359,7 +358,7 @@
     HelpViewController *vc = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     vc.viewName = self.segmentedControl.selectedSegmentIndex == 0 ? @"map" : @"schedule";
     vc.transportType = self.transportType;
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
     [vc release];
     
 }
@@ -367,7 +366,7 @@
 
 # pragma mark IAD delegate
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    NSLog(@"banner view did fail to load with error", error);
+    NSLog(@"banner view did fail to load with error: %@", error);
     banner.frame = CGRectOffset(banner.frame, -320, 0);
     self.bannerIsVisible = NO;
     [self adjustFrames];
