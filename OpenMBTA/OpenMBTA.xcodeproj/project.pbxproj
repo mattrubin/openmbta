@@ -53,7 +53,6 @@
 		DEE8687F107FD09E0067992D /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE8687E107FD09E0067992D /* RoutesViewController.m */; };
 		DEE870DA10835AEA0067992D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE870D810835AEA0067992D /* RootViewController.xib */; };
 		DEE870EE10835BF50067992D /* RoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE870ED10835BF50067992D /* RoutesViewController.xib */; };
-		DEE872AA10837B440067992D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE872A910837B440067992D /* Reachability.m */; };
 		DEE872B410837B6C0067992D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE872B310837B6C0067992D /* SystemConfiguration.framework */; };
 		DEE872EA10837EE30067992D /* TAlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE872E910837EE30067992D /* TAlertsViewController.m */; };
 		DEE8735A108389320067992D /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE87358108389320067992D /* AlertViewController.m */; };
@@ -140,8 +139,6 @@
 		DEE8687E107FD09E0067992D /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
 		DEE870D810835AEA0067992D /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		DEE870ED10835BF50067992D /* RoutesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesViewController.xib; sourceTree = "<group>"; };
-		DEE872A810837B440067992D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		DEE872A910837B440067992D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DEE872B310837B6C0067992D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		DEE872E810837EE30067992D /* TAlertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAlertsViewController.h; sourceTree = "<group>"; };
 		DEE872E910837EE30067992D /* TAlertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAlertsViewController.m; sourceTree = "<group>"; };
@@ -194,8 +191,6 @@
 				DECDFC79124D3F18005064D6 /* GridCell.xib */,
 				DE4213041184891300757B6A /* TweetsViewController.h */,
 				DE4213051184891300757B6A /* TweetsViewController.m */,
-				DEE872A810837B440067992D /* Reachability.h */,
-				DEE872A910837B440067992D /* Reachability.m */,
 				DEC08060107EBC3900B22DE8 /* JSON */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
@@ -474,7 +469,6 @@
 				DEE669A6107ED7B400A29725 /* StopAnnotation.m in Sources */,
 				DEE867F9107FC56C0067992D /* GetRemoteDataOperation.m in Sources */,
 				DEE8687F107FD09E0067992D /* RoutesViewController.m in Sources */,
-				DEE872AA10837B440067992D /* Reachability.m in Sources */,
 				DEE872EA10837EE30067992D /* TAlertsViewController.m in Sources */,
 				DEE8735A108389320067992D /* AlertViewController.m in Sources */,
 				DEE8742F1083B72A0067992D /* BaseViewController.m in Sources */,

@@ -54,8 +54,8 @@
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 
-	hostReach = [[Reachability reachabilityWithHostName: @"mbta.com"] retain];
-	[hostReach startNotifer];
+	hostReach = [[Reachability reachabilityWithHostname: @"mbta.com"] retain];
+	[hostReach startNotifier];
 	
 }
 
