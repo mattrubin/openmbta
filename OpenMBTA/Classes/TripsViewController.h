@@ -90,7 +90,6 @@
 - (void)reloadData:(id)sender;
 - (void)toggleBookmark:(id)sender;
 - (BOOL)isBookmarked;
-- (void)toggleBookmark:(id)sender;
 - (IBAction)infoButtonPressed:(id)sender;
 
 - (void)showFindingIndicators;
