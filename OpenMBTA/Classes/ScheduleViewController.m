@@ -135,7 +135,7 @@ const int kCellWidth = 44;
 #pragma mark color grid cell
 
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column {
-    if ((row >= (NSInteger)self.stops.count)  || (column >= (NSInteger)[(self.stops)[row][@"times"] count])) {
+    if ((row >= (NSInteger)self.stops.count) || (column >= (NSInteger)[(NSArray *)self.stops[row][@"times"] count])) {
         return nil;
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];

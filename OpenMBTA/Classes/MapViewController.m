@@ -82,8 +82,9 @@
         NSDictionary *stopDict = stops[stop_id];
         NSString *stopName =  stopDict[@"name"];
         annotation.subtitle = stopName;
-        annotation.title = [self stopAnnotationTitle:((NSArray *)stopDict[@"next_arrivals"]) isRealTime:isRealTime];
-        annotation.numNextArrivals = [NSNumber numberWithInt:[stopDict[@"next_arrivals"] count]];
+        NSArray *nextArrivals = stopDict[@"next_arrivals"];
+        annotation.title = [self stopAnnotationTitle:nextArrivals isRealTime:isRealTime];
+        annotation.numNextArrivals = [NSNumber numberWithInt:nextArrivals.count];
         annotation.stop_id = stop_id;
         if ([imminentStops containsObject:stop_id]) {
             annotation.isNextStop = YES;
