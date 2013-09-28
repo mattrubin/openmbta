@@ -72,7 +72,7 @@
     [self addBookmarkButton];
     if (self.shouldReloadData) {
         
-        self.stops = [NSArray array];
+        self.stops = [NSDictionary dictionary];
         self.mapViewController.selectedStopAnnotation = nil;
         [self startLoadingData];
         
@@ -207,7 +207,7 @@
 - (void)reloadData:(id)sender {    
     [self.mapViewController.stopAnnotations removeAllObjects];
     self.mapViewController.selectedStopAnnotation = nil;
-    self.stops = [NSArray array];    
+    self.stops = [NSDictionary dictionary];
     [self startLoadingData];
 }
 
