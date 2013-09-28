@@ -24,12 +24,12 @@
     BOOL zoomInOnSelect;
 
 }
-@property (nonatomic, retain) TripsViewController *tripsViewController;
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
-@property (nonatomic, retain) NSMutableArray *stopAnnotations;
-@property (nonatomic, retain) StopAnnotation *selectedStopAnnotation;
-@property (nonatomic, retain) NSTimer *triggerCalloutTimer;
-@property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, strong) TripsViewController *tripsViewController;
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) NSMutableArray *stopAnnotations;
+@property (nonatomic, strong) StopAnnotation *selectedStopAnnotation;
+@property (nonatomic, strong) NSTimer *triggerCalloutTimer;
+@property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, copy) NSString *selectedStopName;
 @property MKCoordinateRegion initialRegion;
 - (void)prepareMap:(NSDictionary *)regionInfo;

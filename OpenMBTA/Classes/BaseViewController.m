@@ -43,10 +43,10 @@
 }
 
 - (void)checkForMessage:(NSDictionary *)someData {
-    if ([someData objectForKey:@"message"] != nil) {
-        NSDictionary *message = [someData objectForKey:@"message"];
-        NSString *title = [message objectForKey:@"title"];
-        NSString *body = [message objectForKey:@"body"];        
+    if (someData[@"message"] != nil) {
+        NSDictionary *message = someData[@"message"];
+        NSString *title = message[@"title"];
+        NSString *body = message[@"body"];        
         [self alertMessageTitle:title message:body];
     } 
 }
@@ -59,12 +59,8 @@
         cancelButtonTitle:@"OK" 
         otherButtonTitles:nil]; 
         [alert show]; 
-        [alert release];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 // loading indicator

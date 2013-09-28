@@ -26,7 +26,6 @@
     // Override point for customization after app launch    
 	RootViewController *rootViewController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     [navigationController pushViewController:rootViewController animated:YES];
-    [rootViewController release];
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
     [self testReachability];
@@ -42,11 +41,6 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc {
-	[navigationController release];
-	[window release];
-	[super dealloc];
-}
 
 - (void) testReachability {
 
@@ -54,7 +48,7 @@
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 
-	hostReach = [[Reachability reachabilityWithHostname: @"mbta.com"] retain];
+	hostReach = [Reachability reachabilityWithHostname: @"mbta.com"];
 	[hostReach startNotifier];
 	
 }

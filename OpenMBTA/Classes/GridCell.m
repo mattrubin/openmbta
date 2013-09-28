@@ -19,10 +19,6 @@
     return self;
 }
 
-- (void)dealloc {
-    self.textLabel = nil;
-    [super dealloc];
-}
 
 
 @end

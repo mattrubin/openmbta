@@ -12,6 +12,6 @@
 @interface GridCell : UITableViewCell {
     IBOutlet UILabel *textLabel;
 }
-@property (nonatomic, retain) UILabel *textLabel;
+@property (nonatomic, strong) UILabel *textLabel;
 
 @end

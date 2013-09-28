@@ -28,8 +28,8 @@ const int kCellWidth = 44;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        self.stops = [NSArray array];
-        self.orderedStopNames = [NSArray array];
+        self.stops = @[];
+        self.orderedStopNames = @[];
 
     }
     return self;
@@ -63,12 +63,6 @@ const int kCellWidth = 44;
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-    self.nearestStopId = nil;
-    self.orderedStopNames = nil;
-    self.tripsViewController = nil;
-    [super dealloc];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 //   [self.tableView reloadData];
@@ -100,7 +94,7 @@ const int kCellWidth = 44;
 // FLOATING GRID
 
 - (void)clearGrid {
-    self.stops = [NSArray array];
+    self.stops = @[];
     self.selectedStopName = nil;
     self.tableView.hidden = YES;    
     self.scrollView.hidden = YES;
@@ -111,13 +105,13 @@ const int kCellWidth = 44;
     self.tableView.hidden = NO;
     [self.tableView reloadData];
 
-    self.scrollView.stops = [NSArray array];
+    self.scrollView.stops = @[];
     self.scrollView.hidden = YES;
 
     if ([self.stops count] == 0) 
         return;
-    NSDictionary *firstRow = [self.stops objectAtIndex:0];
-    NSArray *timesForFirstRow = [firstRow objectForKey:@"times"];
+    NSDictionary *firstRow = (self.stops)[0];
+    NSArray *timesForFirstRow = firstRow[@"times"];
     NSInteger numColumns = [timesForFirstRow count];
 
     int gridWidth = (numColumns * kCellWidth) + 12;
@@ -141,23 +135,23 @@ const int kCellWidth = 44;
 #pragma mark color grid cell
 
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column {
-    if ((row >= [self.stops count])  || (column >= [[[self.stops objectAtIndex:row] objectForKey:@"times"] count])) {
+    if ((row >= [self.stops count])  || (column >= [(self.stops)[row][@"times"] count])) {
         return nil;
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
     
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:11.0];
-    id arrayOrNull = [[[self.stops objectAtIndex:row] objectForKey:@"times"] objectAtIndex:column];
+    id arrayOrNull = (self.stops)[row][@"times"][column];
     
     if (arrayOrNull == [NSNull null]) {
         label.text = @" ";
         view.backgroundColor = [UIColor clearColor];
     } else {
         
-        NSString *time = [(NSArray *)arrayOrNull objectAtIndex:0];
+        NSString *time = ((NSArray *)arrayOrNull)[0];
         label.text = time;
-        int period = [(NSNumber *)[(NSArray *)arrayOrNull objectAtIndex:1] intValue];   
+        int period = [(NSNumber *)((NSArray *)arrayOrNull)[1] intValue];   
 
         if (period == -1) {
             //view.backgroundColor = [UIColor colorWithRed: (25/255.0 ) green: (255.0/255.0) blue: (76/255.0) alpha:0.2];
@@ -175,7 +169,6 @@ const int kCellWidth = 44;
     
     label.frame = CGRectMake(5, 15, kCellWidth, kRowHeight - 15);
     [view addSubview:label];
-    [label release];
 
     
     return (UIView *)view; 
@@ -246,7 +239,7 @@ const int kCellWidth = 44;
         //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"GridCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        cell = nib[0];
 
         cell.accessoryType =  UITableViewCellAccessoryNone; 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -258,9 +251,9 @@ const int kCellWidth = 44;
         return cell;
     }
                           
-    NSDictionary *stopRow = [self.stops objectAtIndex:indexPath.row];
-    NSDictionary *stopDict = [stopRow objectForKey:@"stop"];
-    NSString *stopName =  [stopDict objectForKey:@"name"];
+    NSDictionary *stopRow = (self.stops)[indexPath.row];
+    NSDictionary *stopDict = stopRow[@"stop"];
+    NSString *stopName =  stopDict[@"name"];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
     cell.textLabel.textColor = self.selectedRow == indexPath.row ? [UIColor purpleColor] : [UIColor blackColor];        
     cell.textLabel.text =  stopName;
@@ -279,12 +272,12 @@ const int kCellWidth = 44;
     float newX;
     if (showCurrentColumn) {
         // move to most relevant column
-        NSArray *times = [[self.stops objectAtIndex:row] objectForKey:@"times"];
+        NSArray *times = (self.stops)[row][@"times"];
 
         int col = 0;
         for (id time in times) {
             if (![time isEqual:[NSNull null]]) {
-                int period = [(NSNumber *)[(NSArray *)time objectAtIndex:1] intValue];
+                int period = [(NSNumber *)((NSArray *)time)[1] intValue];
                 if (period == 1) {
                     break;
                 }

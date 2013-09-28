@@ -15,29 +15,24 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.urlString = nil;
-    [super dealloc];
-}
 
 - (void)main
 {
     if (self.isCancelled) return;
     if (urlString == nil) return;
     
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSURL *url = [NSURL URLWithString:urlString];
+    @autoreleasepool {
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSStringEncoding stringEncoding;
+        NSError *error;
+        NSString *jsonString = [NSString stringWithContentsOfURL:url usedEncoding:&stringEncoding error:&error];
+        
+        if (!self.isCancelled) {
+            [target performSelectorOnMainThread:action withObject:jsonString waitUntilDone:NO];
+        }
     
-    NSStringEncoding stringEncoding;
-    NSError *error;
-    NSString *jsonString = [NSString stringWithContentsOfURL:url usedEncoding:&stringEncoding error:&error];
-    
-    if (!self.isCancelled) {
-        [target performSelectorOnMainThread:action withObject:jsonString waitUntilDone:NO];
     }
-    
-    [pool release];
 }
 
 @end

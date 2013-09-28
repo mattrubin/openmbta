@@ -52,34 +52,34 @@
 
 }
 @property (nonatomic, copy) NSString *headsign;
-@property (nonatomic, retain) NSString *routeShortName;
-@property (nonatomic, retain) NSString *transportType;
-@property (nonatomic, retain) NSString *firstStop;
+@property (nonatomic, strong) NSString *routeShortName;
+@property (nonatomic, strong) NSString *transportType;
+@property (nonatomic, strong) NSString *firstStop;
 @property (nonatomic, getter=shouldReloadData) BOOL shouldReloadData;
 @property (nonatomic, getter=shouldReloadRegion) BOOL shouldReloadRegion;
-@property (nonatomic, retain) IBOutlet UIView *contentView;
-@property (nonatomic, retain) CLLocation *location;
-@property (nonatomic, retain) IBOutlet UILabel *headsignLabel;
-@property (nonatomic, retain) IBOutlet UILabel *routeNameLabel;    
-@property (nonatomic, retain) NSDictionary *stops;
-@property (nonatomic, retain) NSArray *orderedStopIds;
-@property (nonatomic, retain) NSArray *imminentStops;
-@property (nonatomic, retain) NSArray *firstStops;
-@property (nonatomic, retain) NSDictionary *regionInfo;
+@property (nonatomic, strong) IBOutlet UIView *contentView;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) IBOutlet UILabel *headsignLabel;
+@property (nonatomic, strong) IBOutlet UILabel *routeNameLabel;    
+@property (nonatomic, strong) NSDictionary *stops;
+@property (nonatomic, strong) NSArray *orderedStopIds;
+@property (nonatomic, strong) NSArray *imminentStops;
+@property (nonatomic, strong) NSArray *firstStops;
+@property (nonatomic, strong) NSDictionary *regionInfo;
 @property (nonatomic,copy) NSString *selectedStopId;
 
-@property (nonatomic, retain) IBOutlet MapViewController *mapViewController;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, retain) IBOutlet ScheduleViewController *scheduleViewController;
-@property (nonatomic, retain) UIView *currentContentView;
-@property (nonatomic, retain) IBOutlet StopsViewController *stopsViewController;
-@property (nonatomic, retain) NSMutableArray *orderedStopNames;
-@property (nonatomic, retain) UIBarButtonItem *bookmarkButton; 
+@property (nonatomic, strong) IBOutlet MapViewController *mapViewController;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) IBOutlet ScheduleViewController *scheduleViewController;
+@property (nonatomic, strong) UIView *currentContentView;
+@property (nonatomic, strong) IBOutlet StopsViewController *stopsViewController;
+@property (nonatomic, strong) NSMutableArray *orderedStopNames;
+@property (nonatomic, strong) UIBarButtonItem *bookmarkButton; 
 @property BOOL bannerIsVisible;
-@property (nonatomic, retain) ADBannerView *adView;
+@property (nonatomic, strong) ADBannerView *adView;
 @property  NSInteger startOnSegmentIndex;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *findStopButton;
-@property (nonatomic, retain)   UIView *findingProgressView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *findStopButton;
+@property (nonatomic, strong)   UIView *findingProgressView;
 
 - (void)addBookmarkButton;
 - (void)toggleView:(id)sender;

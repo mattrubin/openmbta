@@ -14,10 +14,10 @@
     UITableView *tableView;
     TripsViewController *tripsViewController;
 }
-@property (nonatomic, retain) NSMutableArray *orderedStopNames;    
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) TripsViewController *tripsViewController;
-@property (nonatomic, retain) NSString *selectedStopName;
+@property (nonatomic, strong) NSMutableArray *orderedStopNames;    
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) TripsViewController *tripsViewController;
+@property (nonatomic, strong) NSString *selectedStopName;
 - (void)back:(id)sender;
 - (void)loadStopNames:(NSMutableArray *)stopNames;
 - (void)selectStopNamed:(NSString *)stopName;

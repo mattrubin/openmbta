@@ -12,7 +12,7 @@
 @interface TimePickerViewController : UIViewController {
     IBOutlet UIDatePicker *timePicker;
 }
-@property (nonatomic, retain) UIDatePicker *timePicker;
+@property (nonatomic, strong) UIDatePicker *timePicker;
 - (IBAction)doneButtonPressed:(id)sender;
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)resetButtonPressed:(id)sender;

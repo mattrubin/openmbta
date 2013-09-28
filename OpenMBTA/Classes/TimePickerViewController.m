@@ -21,10 +21,6 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    [timePicker release];
-    [super dealloc];
-}
 
 - (IBAction)doneButtonPressed:(id)sender {
     NSDate *selected = [timePicker date];
@@ -34,7 +30,7 @@
     if (intervalFromNow > (2 * 60)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BaseTimeChanged"
                                                             object:self
-                                                          userInfo:[NSDictionary dictionaryWithObject:selected forKey:@"NewBaseTime"]];
+                                                          userInfo:@{@"NewBaseTime": selected}];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BaseTimeChanged"
                                                             object:self

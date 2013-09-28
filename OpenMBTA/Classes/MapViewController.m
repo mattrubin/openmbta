@@ -53,25 +53,19 @@
     [super viewWillAppear:animated];
 }
 
-- (void)dealloc {
-    self.triggerCalloutTimer = nil;
-    self.selectedStopName = nil;
-    self.selectedStopAnnotation = nil;
-    [super dealloc];
-}
 
 - (void)prepareMap:(NSDictionary *)regionInfo {
     [mapView removeAnnotations:self.stopAnnotations];
     [self.stopAnnotations removeAllObjects];
     
-    if ([regionInfo objectForKey:@"center_lat"] == nil) 
+    if (regionInfo[@"center_lat"] == nil) 
         return;
     
     MKCoordinateRegion region;    
-    region.center.latitude = [[regionInfo objectForKey:@"center_lat"] floatValue];
-    region.center.longitude = [[regionInfo objectForKey:@"center_lng"] floatValue];
-    region.span.latitudeDelta = [[regionInfo objectForKey:@"lat_span"] floatValue] * 1.1;
-    region.span.longitudeDelta = [[regionInfo objectForKey:@"lng_span"] floatValue] * 1.1;
+    region.center.latitude = [regionInfo[@"center_lat"] floatValue];
+    region.center.longitude = [regionInfo[@"center_lng"] floatValue];
+    region.span.latitudeDelta = [regionInfo[@"lat_span"] floatValue] * 1.1;
+    region.span.longitudeDelta = [regionInfo[@"lng_span"] floatValue] * 1.1;
     self.initialRegion = region;
     zoomInOnSelect = YES;
     [mapView setRegion:region animated:NO];
@@ -85,22 +79,21 @@
     NSArray *stop_ids = [stops allKeys];
     for (NSString *stop_id in stop_ids) {
         StopAnnotation *annotation = [[StopAnnotation alloc] init];
-        NSDictionary *stopDict = [stops objectForKey:stop_id];
-        NSString *stopName =  [stopDict objectForKey:@"name"];
+        NSDictionary *stopDict = stops[stop_id];
+        NSString *stopName =  stopDict[@"name"];
         annotation.subtitle = stopName;
-        annotation.title = [self stopAnnotationTitle:((NSArray *)[stopDict objectForKey:@"next_arrivals"]) isRealTime:isRealTime];
-        annotation.numNextArrivals = [NSNumber numberWithInt:[[stopDict objectForKey:@"next_arrivals"] count]];
+        annotation.title = [self stopAnnotationTitle:((NSArray *)stopDict[@"next_arrivals"]) isRealTime:isRealTime];
+        annotation.numNextArrivals = [NSNumber numberWithInt:[stopDict[@"next_arrivals"] count]];
         annotation.stop_id = stop_id;
         if ([imminentStops containsObject:stop_id]) {
             annotation.isNextStop = YES;
         }
         if ([firstStops containsObject:stopName]) annotation.isFirstStop = YES;
         CLLocationCoordinate2D coordinate;
-        coordinate.latitude = [[stopDict objectForKey:@"lat"] doubleValue];
-        coordinate.longitude = [[stopDict objectForKey:@"lng"] doubleValue];
+        coordinate.latitude = [stopDict[@"lat"] doubleValue];
+        coordinate.longitude = [stopDict[@"lng"] doubleValue];
         annotation.coordinate = coordinate;
         [self.stopAnnotations addObject:annotation];
-        [annotation release];
     }
     [mapView addAnnotations:self.stopAnnotations];    
     if (!self.selectedStopAnnotation) {
@@ -137,7 +130,6 @@
     for (id annotation in self.stopAnnotations) {
         CLLocation *stopLocation = [[CLLocation alloc] initWithCoordinate:((StopAnnotation *)annotation).coordinate altitude:0 horizontalAccuracy:kCLLocationAccuracyNearestTenMeters verticalAccuracy:kCLLocationAccuracyHundredMeters timestamp:[NSDate date]];
         CLLocationDistance distance = [stopLocation distanceFromLocation:location];
-        [stopLocation release];
         if ((minDistance == -1) || (distance < minDistance)) {
             self.selectedStopAnnotation = (StopAnnotation *)annotation;
             self.selectedStopName = self.selectedStopAnnotation.subtitle;
@@ -198,7 +190,7 @@
     NSMutableArray *times = [NSMutableArray array];
     int count = 0;
     for (NSArray *pair in nextArrivals) {
-        [times addObject:[pair objectAtIndex:0]];       
+        [times addObject:pair[0]];       
         count = count + 1;
         if (count == 4) break;
     }
@@ -217,7 +209,7 @@
     static NSString *pinID = @"mbtaPin";
 	MKPinAnnotationView *pinView =  (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinID];
     if (pinView == nil) {
-        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinID] autorelease];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinID];
         //pinView.pinColor = MKPinAnnotationColorRed;
         pinView.canShowCallout = YES;
         //pinView.animatesDrop = YES; // this causes a callout bug where the callout get obscured by some pins

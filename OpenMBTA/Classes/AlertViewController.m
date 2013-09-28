@@ -17,17 +17,12 @@
     self.title = @"T Alert";
 }
 
-- (void)dealloc {
-    self.alertGUID = nil;
-    [super dealloc];
-}
 
 - (void)loadWebView {
     NSString *urlString = [NSString stringWithFormat:@"%@/alerts/%@", ServerURL, self.alertGUID];
     // NSLog(@"calling %@", urlString);
     NSURL *url = [[NSURL alloc] initWithString: urlString];
     self.request = [[NSURLRequest alloc] initWithURL: url]; 
-    [url release];
     [self showLoadingIndicators];
     [self.webView loadRequest:self.request];    
 }
